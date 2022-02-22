@@ -9,7 +9,7 @@ import { initTijeras } from "./components/move/tijeras"
 import { initStar } from "./components/star/index"
 
 function initApp(param) {
-    // state.init()
+    state.init()
     initStar()
     initPapel()
     initPiedra()

@@ -14,9 +14,21 @@ const state = {
     },
     listeners: [],
     init() {
-        const localData = localStorage.getItem("saved-state");
-        localStorage.removeItem(localData);
-        // this.setState(JSON.parse(localData));
+        let localData = localStorage.getItem("saved-state");
+        if (localData !== null) {
+            this.setState(JSON.parse(localData));
+        }
+        else {
+            this.setState({
+                currentGame: {
+                    myPlay: "",
+                    cpuPly: ""
+                },
+                histoy: []
+            })
+        }
+
+
     },
     getState() {
         return this.data
