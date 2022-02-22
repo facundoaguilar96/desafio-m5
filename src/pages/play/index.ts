@@ -1,30 +1,30 @@
 import { state } from "../../state";
 
-function cpuPlayed (){
-    const numberRandom = Math.floor((Math.random() * (4 - 1) + 1)-1)
-    const chose = ["piedra","papel","tijeras"]
-    const randomChose = chose[numberRandom]
-    return randomChose;    
+function cpuPlayed() {
+    const numberRandom = Math.floor((Math.random() * (4 - 1) + 1) - 1);
+    const chose = ["piedra", "papel", "tijeras"];
+    const randomChose = chose[numberRandom];
+    return randomChose;
 }
 
 
-export function initPlay (params){
-    
-    function pcImg (param){
-        if (param == "piedra"){
-            piedraPc.style.display = "inherit"
-            
-        }else if (param=="papel"){
-            papelPc.style.display = "inherit"
-            
-        }else if (param == "tijeras"){
-            tijerasPc.style.display = "inherit"
-            
+export function initPlay(params) {
+
+    function pcImg(param) {
+        if (param == "piedra") {
+            piedraPc.style.display = "inherit";
+
+        } else if (param == "papel") {
+            papelPc.style.display = "inherit";
+
+        } else if (param == "tijeras") {
+            tijerasPc.style.display = "inherit";
+
         }
 
     }
-    
-    
+
+
     const style = document.createElement("style");
     style.innerHTML = `
             *{
@@ -195,11 +195,11 @@ export function initPlay (params){
                 justify-content: center;
                  }
             }
-    `
+    `;
 
 
 
-    
+
 
     const div = document.createElement("div")
     div.innerHTML = `
@@ -225,91 +225,91 @@ export function initPlay (params){
                 <div class="move-pc tijeras-pc pcAnimation"><tijeras-mov></tijeras-mov></div>
                
         
-    `
+    `;
     div.appendChild(style);
-    
-    
-    const tijerasPc:any = div.querySelector(".tijeras-pc")
-    const piedraPc:any = div.querySelector(".piedra-pc")
-    const papelPc:any = div.querySelector(".papel-pc")
 
-    const counter:any = div.querySelector(".counter")
-    
-    const tijeras:any = div.querySelector(".tijeras")
-    const piedra:any = div.querySelector(".piedra")
-    const papel:any = div.querySelector(".papel")
 
-    const userTijeras:any = div.querySelector(".user-tijeras")
-    const userPapel:any = div.querySelector(".user-papel")
-    const userPiedra:any = div.querySelector(".user-piedra")
-           
-    
+    const tijerasPc: any = div.querySelector(".tijeras-pc");
+    const piedraPc: any = div.querySelector(".piedra-pc");
+    const papelPc: any = div.querySelector(".papel-pc");
 
-            
+    const counter: any = div.querySelector(".counter");
+
+    const tijeras: any = div.querySelector(".tijeras");
+    const piedra: any = div.querySelector(".piedra");
+    const papel: any = div.querySelector(".papel");
+
+    const userTijeras: any = div.querySelector(".user-tijeras");
+    const userPapel: any = div.querySelector(".user-papel");
+    const userPiedra: any = div.querySelector(".user-piedra");
 
 
 
 
-    
-    papel.addEventListener("click",(e:any)=>{
-        counter.style.display = "none"
-        piedra.style.display = "none"
-        tijeras.style.display = "none"
-        e.target.style.display = "none"
-        userPapel.style.display = "inherit"
-        let cpuChose:any = cpuPlayed()
-        state.addCurrentPlay("papel",cpuChose)
+
+
+
+
+
+    papel.addEventListener("click", (e: any) => {
+        counter.style.display = "none";
+        piedra.style.display = "none";
+        tijeras.style.display = "none";
+        e.target.style.display = "none";
+        userPapel.style.display = "inherit";
+        let cpuChose: any = cpuPlayed();
+        state.addCurrentPlay("papel", cpuChose);
         setTimeout(() => {
-            if (state.getState().currentGame.cpuPlay == "piedra"){
-                params.goTo("/result/win")
-                
-            }else if(state.getState().currentGame.cpuPlay == "tijeras"){
-                params.goTo("/result/loose")
-                
-            }else{
-                params.goTo("/result/tie")
-                
-            }
-        }, 3000);    
-        pcImg(cpuChose);      
-    })
+            if (state.getState().currentGame.cpuPlay == "piedra") {
+                params.goTo("/result/win");
 
-    
-    piedra.addEventListener("click",(e:any)=>{
-        papel.style.display = "none"
-        tijeras.style.display = "none"
-        e.target.style.display = "none"
-        counter.style.display = "none"
-        userPiedra.style.display = "inherit"
-        let cpuChose:any = cpuPlayed()
-        state.addCurrentPlay("piedra",cpuChose)
-        setTimeout(() => {
-            if (state.getState().currentGame.cpuPlay == "tijeras"){
-                params.goTo("/result/win")
-            }else if(state.getState().currentGame.cpuPlay == "papel"){
-                params.goTo("/result/loose")
-            }else{
-                params.goTo("/result/tie")
+            } else if (state.getState().currentGame.cpuPlay == "tijeras") {
+                params.goTo("/result/loose");
+
+            } else {
+                params.goTo("/result/tie");
+
             }
         }, 3000);
-        pcImg(cpuChose)  
+        pcImg(cpuChose);
     })
 
-    
-    tijeras.addEventListener("click",(e:any)=>{
-        papel.style.display = "none"
-        piedra.style.display = "none"
-        e.target.style.display = "none"
-        counter.style.display = "none"
-        userTijeras.style.display = "inherit"
-        let cpuChose:any = cpuPlayed()
-        state.addCurrentPlay("tijeras",cpuChose)
+
+    piedra.addEventListener("click", (e: any) => {
+        papel.style.display = "none";
+        tijeras.style.display = "none";
+        e.target.style.display = "none";
+        counter.style.display = "none";
+        userPiedra.style.display = "inherit";
+        let cpuChose: any = cpuPlayed();
+        state.addCurrentPlay("piedra", cpuChose);
         setTimeout(() => {
-            if (state.getState().currentGame.cpuPlay == "papel"){
-                params.goTo("/result/win")
-            }else if(state.getState().currentGame.cpuPlay == "piedra"){
+            if (state.getState().currentGame.cpuPlay == "tijeras") {
+                params.goTo("/result/win");
+            } else if (state.getState().currentGame.cpuPlay == "papel") {
                 params.goTo("/result/loose");
-            }else{
+            } else {
+                params.goTo("/result/tie");
+            }
+        }, 3000);
+        pcImg(cpuChose);
+    })
+
+
+    tijeras.addEventListener("click", (e: any) => {
+        papel.style.display = "none";
+        piedra.style.display = "none";
+        e.target.style.display = "none";
+        counter.style.display = "none";
+        userTijeras.style.display = "inherit";
+        let cpuChose: any = cpuPlayed()
+        state.addCurrentPlay("tijeras", cpuChose)
+        setTimeout(() => {
+            if (state.getState().currentGame.cpuPlay == "papel") {
+                params.goTo("/result/win");
+            } else if (state.getState().currentGame.cpuPlay == "piedra") {
+                params.goTo("/result/loose");
+            } else {
                 params.goTo("/result/tie");
             }
         }, 3000);
@@ -318,10 +318,10 @@ export function initPlay (params){
 
 
     setTimeout(() => {
-        if (state.getState().currentGame.myPlay == ""){
-            params.goTo("/rules")
+        if (state.getState().currentGame.myPlay == "") {
+            params.goTo("/rules");
         }
     }, 4000);
- 
+
     return div;
 }

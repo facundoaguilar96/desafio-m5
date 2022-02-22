@@ -70,7 +70,10 @@ export function initRouter (container){
 
     if (location.host.includes("github.io")){
       goTo("/inicio")
-    }else{handleRoute(location.pathname);}
+    }else if(location.pathname == "/"){
+      goTo("/inicio")
+    }
+    else{handleRoute(location.pathname);}
      
     window.onpopstate = function (){
       handleRoute(location.pathname);

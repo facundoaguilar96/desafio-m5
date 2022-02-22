@@ -1,71 +1,84 @@
-type Played = "piedra"|"papel"|"tijeras" | "";
+type Played = "piedra" | "papel" | "tijeras" | "";
 type Play = {
     myPlay: Played,
-    cpuPlay:Played
+    cpuPlay: Played
 }
 
 const state = {
-    data:{
-        currentGame:{
+    data: {
+        currentGame: {
             myPlay: "",
             cpuPly: ""
         },
-        histoy:[]
+        histoy: []
     },
-    listeners:[],
-    init(){
+    listeners: [],
+    init() {
         const localData = localStorage.getItem("saved-state");
-        this.setState(JSON.parse(localData));
+        if (localData !== null) {
+            this.setState(JSON.parse(localData));
+        } else {
+            state.setState(
+                {
+                    currentGame: {
+                        myPlay: "",
+                        cpuPly: ""
+                    },
+                    histoy: []
+                }
+            )
+        }
+
     },
-    getState(){
+    getState() {
         return this.data
     },
-    
-    setState(newState){
+
+    setState(newState) {
         this.data = newState
-         for (const cb of this.listeners) {
+        for (const cb of this.listeners) {
             cb()
-         }
-         localStorage.setItem("saved-state", JSON.stringify(newState));
+        }
+        localStorage.setItem("saved-state", JSON.stringify(newState));
     },
-    
-    subscribe(callback){
+
+    subscribe(callback) {
         this.listeners.push(callback)
     },
 
-    addCurrentPlay(myPlay:Played,cpuPlay:Played){
+    addCurrentPlay(myPlay: Played, cpuPlay: Played) {
         const data = this.getState();
-        const newData = {...data, currentGame:{myPlay: myPlay, cpuPlay: cpuPlay}}
+        const newData = { ...data, currentGame: { myPlay: myPlay, cpuPlay: cpuPlay } }
         this.setState(newData);
-        this.whoWins({myPlay,cpuPlay})
+        this.whoWins({ myPlay, cpuPlay })
 
     },
 
-    whoWins(played:Play){
+    whoWins(played: Play) {
         const data = this.getState()
-        
+
         const winWhitPaper = played.myPlay == "papel" && played.cpuPlay == "piedra"
         const winWhitRock = played.myPlay == "piedra" && played.cpuPlay == "tijeras"
         const winWhitScissors = played.myPlay == "tijeras" && played.cpuPlay == "papel"
-        const win = [winWhitPaper,winWhitRock,winWhitScissors].includes(true)
+        const win = [winWhitPaper, winWhitRock, winWhitScissors].includes(true)
 
         const missWhitPaper = played.cpuPlay == "papel" && played.myPlay == "piedra"
         const missWhitRock = played.cpuPlay == "piedra" && played.myPlay == "tijeras"
         const missWhitScissors = played.cpuPlay == "tijeras" && played.myPlay == "papel"
-        const miss = [missWhitPaper,missWhitRock,missWhitScissors].includes(true)
+        const miss = [missWhitPaper, missWhitRock, missWhitScissors].includes(true)
 
-        if (win == true){
+        if (win == true) {
             data.histoy.push(1)
-            this.setState(data)     
+            this.setState(data)
         }
-        else if(miss == true){ 
+        else if (miss == true) {
             data.histoy.push(0)
             this.setState(data)
         }
-        
+
     }
-    
-    
+
+
 }
 
-export {state}
+export { state }
