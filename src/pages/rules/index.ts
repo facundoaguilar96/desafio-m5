@@ -1,10 +1,10 @@
 
-import {state} from "../../state"
+import { state } from "../../state"
 
 
 
-export function initRules (params){
-    
+export function initRules(params) {
+
     const style = document.createElement("style")
     style.innerHTML = `
         *{
@@ -88,7 +88,7 @@ export function initRules (params){
     `
 
     const div = document.createElement("div")
-    
+
     div.innerHTML = `
         <div class="container">
             <div class="text-container">
@@ -107,13 +107,13 @@ export function initRules (params){
         </div></div>
     `
 
-    
+
 
     const next = div.querySelector(".next")
-    next.addEventListener("click",()=>{
-        state.addCurrentPlay("","")
+    next.addEventListener("click", () => {
+        // state.addCurrentPlay("","")
         params.goTo("/play")
     })
-     div.appendChild(style)
+    div.appendChild(style)
     return div;
 }

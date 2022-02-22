@@ -1,15 +1,15 @@
-import { state} from "./state"
-import {initRouter } from "./router"
-import {initText} from "./components/text/index"
-import {initButton} from "./components/buttom/index"
-import {initCounter} from "./components/counter/index"
-import { initPiedra} from "./components/move/piedra"
-import{ initPapel  } from "./components/move/papel"
-import {initTijeras}   from "./components/move/tijeras"
-import {initStar} from "./components/star/index"
+import { state } from "./state"
+import { initRouter } from "./router"
+import { initText } from "./components/text/index"
+import { initButton } from "./components/buttom/index"
+import { initCounter } from "./components/counter/index"
+import { initPiedra } from "./components/move/piedra"
+import { initPapel } from "./components/move/papel"
+import { initTijeras } from "./components/move/tijeras"
+import { initStar } from "./components/star/index"
 
-function initApp(param){
-    state.init()
+function initApp(param) {
+    // state.init()
     initStar()
     initPapel()
     initPiedra()
@@ -21,11 +21,13 @@ function initApp(param){
 }
 
 
-(function (){
-   
-   
+(function () {
+
+
     const root = document.querySelector(".root");
-    initApp(root) ;
+    initApp(root);
+    console.log(state.getState());
+
 })()
 
 
