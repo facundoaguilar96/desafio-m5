@@ -24,8 +24,8 @@ function initApp(param){
 (function (){
    
    
-    const root = document.querySelector(".root")
-    initApp(root) 
+    const root = document.querySelector(".root");
+    initApp(root) ;
 })()
 
 

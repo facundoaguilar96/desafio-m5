@@ -49,7 +49,7 @@ export function initRouter (container){
     function handleRoute(route) {
         console.log("El handleRoute recibió una nueva ruta", route);
         const newRoute = isGithubPages() ? route.replace(BASE_PATH, "") : route;
-      
+        console.log(newRoute)
         for (const r of routes) {
           if (r.path.test(newRoute)) { 
             
@@ -66,8 +66,11 @@ export function initRouter (container){
 
 
     if (location.pathname == "/"){
-      goTo("/inicio")
-    }else{handleRoute(location.pathname);}
+      goTo("/inicio");
+    }else if(location.host.includes("github.io")){
+      goTo("desafio-m5");
+    }
+    else{handleRoute(location.pathname);}
      
     window.onpopstate = function (){
       handleRoute(location.pathname);
