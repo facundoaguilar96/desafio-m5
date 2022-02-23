@@ -111,7 +111,7 @@ export function initRules(params) {
 
     const next = div.querySelector(".next")
     next.addEventListener("click", () => {
-        // state.addCurrentPlay("","")
+        state.addCurrentPlay("", "")
         params.goTo("/play")
     })
     div.appendChild(style)

@@ -14,6 +14,7 @@ const state = {
     },
     listeners: [],
     init() {
+        // localStorage.removeItem('saved-state');
         let localData = localStorage.getItem("saved-state");
         if (localData !== null) {
             this.setState(JSON.parse(localData));

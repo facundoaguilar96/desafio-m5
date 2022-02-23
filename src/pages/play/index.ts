@@ -318,6 +318,8 @@ export function initPlay(params) {
 
 
     setTimeout(() => {
+        console.log(state.getState());
+
         if (state.getState().currentGame.myPlay == "") {
             params.goTo("/rules");
         }
